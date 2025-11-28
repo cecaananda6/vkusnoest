@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить рецепт - ВкусноЕст</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link active">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="add-recipe-container" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1000&auto=format&fit=crop" onerror="this.src='https://images.unsplash.com/photo-1495521821757-a1efb6729352?q=80&w=1000&auto=format&fit=crop'" alt="Cooking" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;">
+                <h1 class="section-title" style="margin-bottom: 10px;">Добавить свой рецепт</h1>
+                <p style="color: #666;">Поделитесь своим кулинарным шедевром с сообществом!</p>
+            </div>
+
+            <form id="addRecipeForm">
+                <div class="form-group">
+                    <label>Название блюда</label>
+                    <input type="text" id="recipeTitle" required placeholder="Например: Борщ по-домашнему">
+                </div>
+
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <select id="recipeCategory" required>
+                            <option value="Супы">Супы</option>
+                            <option value="Салаты">Салаты</option>
+                            <option value="Горячее">Горячее</option>
+                            <option value="Завтраки">Завтраки</option>
+                            <option value="Детское">Детское</option>
+                            <option value="Диетическое">Диетическое</option>
+                            <option value="Напитки">Напитки</option>
+                            <option value="Десерты">Десерты</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Сложность</label>
+                        <select id="recipeDifficulty" required>
+                            <option value="Легкая">Легкая</option>
+                            <option value="Средняя">Средняя</option>
+                            <option value="Сложная">Сложная</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Время приготовления</label>
+                        <input type="text" id="recipeTime" required placeholder="Например: 45 мин">
+                    </div>
+                    <div class="form-group">
+                        <label>Калорийность (ккал)</label>
+                        <input type="number" id="recipeCalories" placeholder="Например: 350">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ссылка на фото</label>
+                    <input type="url" id="recipeImage" required placeholder="https://example.com/image.jpg">
+                    <small style="color: #999;">Используйте прямую ссылку на изображение (например, с Unsplash)</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="recipeDescription" required rows="3" placeholder="Краткое описание блюда..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Ингредиенты (каждый с новой строки)</label>
+                    <textarea id="recipeIngredients" required rows="6" placeholder="Картофель - 2 шт&#10;Морковь - 1 шт&#10;Лук - 1 шт"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Шаги приготовления</label>
+                    <div id="stepsContainer">
+                        <div class="step-row" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <textarea class="step-input" required placeholder="Шаг 1..." rows="2"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline btn-small" id="addStepBtn"><i class="fas fa-plus"></i> Добавить шаг</button>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width" style="margin-top: 20px;">Опубликовать рецепт</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Тысячи рецептов на любой вкус.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Разделы</h3>
+                <a href="index.html">Рецепты</a>
+                <a href="articles.html">Статьи</a>
+                <a href="forum.html">Форум</a>
+                <a href="shopping-list.html">Список покупок</a>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-envelope"></i> info@tastyeat.ru</p>
+                <p><i class="fas fa-phone"></i> +7 (901) 003 53 88</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modals (Copied from index.html) -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/add-recipe.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

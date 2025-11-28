@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список покупок - ВкусноЕст</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link active">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="shopping-list-header" style="margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1000&auto=format&fit=crop" alt="Shopping" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <h1 class="section-title" style="margin: 0 auto 0 0; text-align: left; transform: none; left: auto;"><i class="fas fa-shopping-basket"></i> Мой список покупок</h1>
+                <div class="list-actions">
+                    <button id="copyListBtn" class="btn btn-outline" title="Копировать список">
+                        <i class="fas fa-copy"></i> Копировать
+                    </button>
+                    <button id="clearListBtn" class="btn btn-outline btn-danger" title="Очистить список">
+                        <i class="fas fa-trash-alt"></i> Очистить
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-item-form" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; display: flex; gap: 10px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <input type="text" id="newItemInput" placeholder="Что нужно купить? (например: Молоко)" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+            <button id="addItemBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Добавить</button>
+        </div>
+
+        <div class="shopping-list-container" id="shoppingListContainer" style="max-width: 800px; margin: 0 auto;">
+            <!-- Items will be populated here -->
+            <div class="empty-state">
+                <i class="fas fa-carrot"></i>
+                <h3>Ваш список покупок пуст</h3>
+                <p>Добавляйте ингредиенты из рецептов, чтобы не забыть их купить.</p>
+                <a href="index.html" class="btn btn-primary">Перейти к рецептам</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Тысячи рецептов на любой вкус.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Разделы</h3>
+                <a href="index.html">Рецепты</a>
+                <a href="articles.html">Статьи</a>
+                <a href="forum.html">Форум</a>
+                <a href="shopping-list.html">Список покупок</a>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-envelope"></i> info@tastyeat.ru</p>
+                <p><i class="fas fa-phone"></i> +7 (901) 003 53 88</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modals (Copied from index.html) -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/shopping-list.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

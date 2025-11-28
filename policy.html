@@ -1,0 +1,104 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | ВкусноЕст</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <h1 class="section-title">Политика конфиденциальности</h1>
+        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <p><strong>Дата вступления в силу: 28 ноября 2025 г.</strong></p>
+            <br>
+            <h3>1. Общие положения</h3>
+            <p>Настоящая Политика конфиденциальности описывает, как сайт "ВкусноЕст" собирает, использует и защищает вашу информацию.</p>
+            <br>
+            <h3>2. Сбор информации</h3>
+            <p>Мы не собираем персональные данные на сервере, так как сайт работает полностью в браузере пользователя. Все данные (избранное, отзывы, регистрация) хранятся в локальном хранилище (localStorage) вашего устройства.</p>
+            <br>
+            <h3>3. Использование файлов Cookie</h3>
+            <p>Мы используем технологии локального хранения для обеспечения функциональности сайта (сохранение сессии входа, избранных рецептов).</p>
+            <br>
+            <h3>4. Контактная информация</h3>
+            <p>Если у вас есть вопросы по поводу этой политики, свяжитесь с нами по адресу: info@vkusnoest.ru</p>
+        </div>
+    </main>
+
+    <footer class="footer" id="contacts">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Готовьте просто, быстро и вкусно.</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> г. Краснодар, ул. Красная, д. 25</p>
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> <a href="tel:+79010035388" style="color: inherit;">+7 (901) 003 53 88</a></p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> <a href="mailto:info@vkusnoest.ru" style="color: inherit;">info@vkusnoest.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="forum.html">Форум</a></li>
+                    <li><a href="shopping-list.html">Список покупок</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Подписка</h3>
+                <p style="margin-bottom: 15px;">Получайте новые рецепты на почту</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Спасибо за подписку!'); this.reset();">
+                    <input type="email" placeholder="Ваш email" required style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary full-width">Подписаться</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены. | <a href="policy.html" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

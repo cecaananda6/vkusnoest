@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что приготовить? | ВкусноЕст</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h1 class="section-title">Что приготовить?</h1>
+            <p style="margin-bottom: 30px; color: #666;">Введите ингредиенты, которые у вас есть, и мы подберем подходящие рецепты.</p>
+            
+            <div class="search-box" style="margin-bottom: 30px;">
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="ingredientInput" placeholder="Введите ингредиент (например: картофель)" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <button id="addIngredientBtn" class="btn btn-primary">Добавить</button>
+                </div>
+                <div id="selectedIngredients" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                    <!-- Selected ingredients will appear here -->
+                </div>
+            </div>
+
+            <button id="findRecipesBtn" class="btn btn-primary full-width" style="margin-bottom: 40px; display: none;">Найти рецепты</button>
+
+            <div id="resultsContainer" class="recipes-grid">
+                <!-- Results will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Recipe Modal (Copied from index.html) -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeRecipeModal">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Auth Modals (Copied from index.html) -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Тысячи рецептов на любой вкус.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Разделы</h3>
+                <a href="index.html">Рецепты</a>
+                <a href="articles.html">Статьи</a>
+                <a href="forum.html">Форум</a>
+                <a href="shopping-list.html">Список покупок</a>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-envelope"></i> info@vkusnoest.ru</p>
+                <p><i class="fas fa-phone"></i> +7 (901) 003 53 88</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/what-to-cook.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

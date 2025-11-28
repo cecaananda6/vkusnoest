@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | ВкусноЕст</title>
+    <meta name="description" content="История создания кулинарного портала ВкусноЕст. Наша миссия и команда.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link active">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h1 class="section-title reveal">О проекте "ВкусноЕст"</h1>
+            
+            <div style="margin-bottom: 40px;" class="reveal reveal-delay-1">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1000&auto=format&fit=crop" onerror="this.src='https://images.unsplash.com/photo-1495521821757-a1efb6729352?q=80&w=1000&auto=format&fit=crop'" alt="Наша кухня" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 30px;">
+                
+                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">Наша миссия</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #4a4a4a; margin-bottom: 20px;">
+                    Мы верим, что кулинария — это не просто готовка, а настоящее искусство, доступное каждому. 
+                    Проект <strong>"ВкусноЕст"</strong> был создан для того, чтобы объединить людей, влюбленных в еду, 
+                    и сделать процесс приготовления блюд простым, понятным и вдохновляющим.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #4a4a4a;">
+                    Наша цель — собрать лучшие рецепты со всего мира, проверить их на собственной кухне и представить вам 
+                    в максимально удобном формате. Мы ценим ваше время, поэтому наши рецепты всегда содержат точные пропорции 
+                    и понятные инструкции.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;" class="reveal reveal-delay-2">
+                <div style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fa-solid fa-check-circle"></i> Качество</h3>
+                    <p>Мы тщательно отбираем каждый рецепт. Только проверенные сочетания и свежие идеи.</p>
+                </div>
+                <div style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fa-solid fa-users"></i> Сообщество</h3>
+                    <p>Мы создаем пространство для общения. Делитесь опытом, задавайте вопросы и находите друзей.</p>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 40px; border-radius: 12px; text-align: center;" class="reveal reveal-delay-3">
+                <h2 style="margin-bottom: 20px;">Свяжитесь с нами</h2>
+                <p style="margin-bottom: 30px;">У вас есть вопросы, предложения или вы хотите сотрудничать? Мы всегда открыты для диалога!</p>
+                
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 40px;">
+                    <div>
+                        <i class="fa-solid fa-envelope" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <p>info@vkusnoest.ru</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <p>+7 (901) 003 53 88</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <p>г. Краснодар, ул. Красная, 25</p>
+                    </div>
+                </div>
+
+                <form id="contactForm" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                    <div class="form-group">
+                        <label>Ваше имя</label>
+                        <input type="text" id="contactName" required placeholder="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="contactEmail" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Сообщение</label>
+                        <textarea id="contactMessage" required placeholder="Текст сообщения..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="contacts">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Готовьте просто, быстро и вкусно.</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> г. Краснодар, ул. Красная, д. 25</p>
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> <a href="tel:+79010035388" style="color: inherit;">+7 (901) 003 53 88</a></p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> <a href="mailto:info@vkusnoest.ru" style="color: inherit;">info@vkusnoest.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="forum.html">Форум</a></li>
+                    <li><a href="shopping-list.html">Список покупок</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links" style="margin-bottom: 20px;">
+                    <a href="https://t.me/" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://vk.com/" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                    <a href="https://wa.me/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <h3>Подписка</h3>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Спасибо за подписку!'); this.reset();">
+                    <input type="email" placeholder="Ваш email" required style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary full-width">Подписаться</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены. | <a href="policy.html" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <!-- Auth Modals -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    // Simulate sending
+                    alert(`Спасибо, ${name}! Ваше сообщение отправлено.\nМы свяжемся с вами по адресу ${email}.`);
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

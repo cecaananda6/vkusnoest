@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Кулинарный форум ВкусноЕст. Обсуждайте рецепты, делитесь опытом и задавайте вопросы сообществу.">
+    <meta name="keywords" content="кулинарный форум, обсуждение рецептов, вопросы поварам, общение кулинаров">
+    <meta name="author" content="ВкусноЕст">
+    <meta property="og:title" content="Форум | ВкусноЕст">
+    <meta property="og:description" content="Присоединяйтесь к обсуждению любимых блюд и кулинарных секретов.">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:type" content="website">
+    <title>Форум | ВкусноЕст</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>document.body.classList.add('js-enabled');</script>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="index.html#categories" class="nav-link">Категории</a></li>
+                    <li><a href="forum.html" class="nav-link active">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="forum-header">
+            <h1 class="section-title">Кулинарный Форум</h1>
+            <button class="btn btn-primary" id="createTopicBtn">Создать тему</button>
+        </div>
+
+        <div class="forum-controls" style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+            <button class="btn btn-outline active forum-filter" data-filter="all">Все темы</button>
+            <button class="btn btn-outline forum-filter" data-filter="Вопросы">Вопросы</button>
+            <button class="btn btn-outline forum-filter" data-filter="Обсуждения">Обсуждения</button>
+            <button class="btn btn-outline forum-filter" data-filter="Инвентарь">Инвентарь</button>
+            <button class="btn btn-outline forum-filter" data-filter="Советы">Советы</button>
+        </div>
+
+        <!-- Topics List View -->
+        <div id="topicsList" class="topics-container">
+            <!-- Topics will be loaded here -->
+            <div class="loading">Загрузка обсуждений...</div>
+        </div>
+
+        <!-- Single Topic View (Hidden by default) -->
+        <div id="topicView" class="topic-view" style="display: none;">
+            <button class="btn btn-outline mb-20" id="backToTopics"><i class="fa-solid fa-arrow-left"></i> Назад к темам</button>
+            <div class="topic-header-card">
+                <h2 id="topicTitle">Название темы</h2>
+                <div class="topic-meta">
+                    <span id="topicAuthor">Автор</span> • <span id="topicDate">Дата</span>
+                </div>
+                <p id="topicContent" class="topic-content-text">Текст темы...</p>
+            </div>
+
+            <div class="comments-section">
+                <h3>Комментарии</h3>
+                <div id="commentsList" class="comments-list">
+                    <!-- Comments will be loaded here -->
+                </div>
+                
+                <div class="add-comment-form" id="addCommentForm">
+                    <h4>Оставить комментарий</h4>
+                    <textarea id="commentInput" placeholder="Напишите ваш комментарий..." rows="4"></textarea>
+                    <button class="btn btn-primary mt-10" id="submitCommentBtn">Отправить</button>
+                </div>
+                <div class="login-to-comment" id="loginToComment" style="display: none;">
+                    <p>Пожалуйста, <a href="#" onclick="document.getElementById('loginBtn').click()">войдите</a>, чтобы оставить комментарий.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Topic Modal -->
+    <div class="modal" id="createTopicModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeTopicModal">&times;</span>
+            <div class="auth-form-container">
+                <h2>Новая тема</h2>
+                <form id="createTopicForm">
+                    <div class="form-group">
+                        <label>Заголовок</label>
+                        <input type="text" required placeholder="О чем хотите поговорить?">
+                    </div>
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <select required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                            <option value="Вопросы">Вопросы</option>
+                            <option value="Обсуждения">Обсуждения</option>
+                            <option value="Инвентарь">Инвентарь</option>
+                            <option value="Советы">Советы</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Сообщение</label>
+                        <textarea required placeholder="Подробности..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modals (Copied from index.html) -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" id="contacts">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Готовьте просто, быстро и вкусно.</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> г. Краснодар, ул. Красная, д. 25</p>
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> <a href="tel:+79010035388" style="color: inherit;">+7 (901) 003 53 88</a></p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> <a href="mailto:info@vkusnoest.ru" style="color: inherit;">info@vkusnoest.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="forum.html">Форум</a></li>
+                    <li><a href="shopping-list.html">Список покупок</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links" style="margin-bottom: 20px;">
+                    <a href="https://t.me/" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://vk.com/" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                    <a href="https://wa.me/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <h3>Подписка</h3>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Спасибо за подписку!'); this.reset();">
+                    <input type="email" placeholder="Ваш email" required style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary full-width">Подписаться</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены. | <a href="policy.html" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/forum.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кулинарная Книга | Вкусные рецепты</title>
+    <meta name="description" content="Лучшие кулинарные рецепты с фото и пошаговыми инструкциями. Супы, салаты, горячее, десерты. Готовьте вкусно и просто!">
+    <meta name="keywords" content="рецепты, кулинария, еда, готовка, супы, салаты, завтраки, ужин">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                <span>ВкусноЕст</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active" data-category="all">Главная</a></li>
+                    <li><a href="#categories" class="nav-link">Категории</a></li>
+                    <li><a href="articles.html" class="nav-link">Статьи</a></li>
+                    <li><a href="forum.html" class="nav-link">Форум</a></li>
+                    <li><a href="shopping-list.html" class="nav-link">Список покупок</a></li>
+                    <li><a href="what-to-cook.html" class="nav-link">Что приготовить?</a></li>
+                    <li><a href="add-recipe.html" class="nav-link">Добавить рецепт</a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Найти рецепт...">
+                <button id="searchBtn"><i class="fa-solid fa-search"></i></button>
+                <button id="favoritesToggle" title="Только избранное" style="margin-left: 5px; color: #ccc;"><i class="fa-solid fa-heart"></i></button>
+                <button id="filterToggleBtn" title="Фильтры"><i class="fa-solid fa-sliders"></i></button>
+            </div>
+            
+            <!-- Filter Panel -->
+            <div class="filter-panel" id="filterPanel">
+                <div class="filter-group">
+                    <label>Время приготовления (до)</label>
+                    <select id="timeFilter">
+                        <option value="all">Любое</option>
+                        <option value="15">15 мин</option>
+                        <option value="30">30 мин</option>
+                        <option value="60">60 мин</option>
+                        <option value="120">2 часа</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Сложность</label>
+                    <select id="difficultyFilter">
+                        <option value="all">Любая</option>
+                        <option value="Легкая">Легкая</option>
+                        <option value="Средняя">Средняя</option>
+                        <option value="Сложная">Сложная</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Калорийность (до ккал)</label>
+                    <input type="number" id="caloriesFilter" placeholder="Например: 500" min="0" step="50">
+                </div>
+                <div class="filter-group">
+                    <label>Особенности</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="Вегетарианское" class="tag-filter"> Вегетарианское</label>
+                        <label><input type="checkbox" value="ПП" class="tag-filter"> ПП</label>
+                        <label><input type="checkbox" value="Без глютена" class="tag-filter"> Без глютена</label>
+                        <label><input type="checkbox" value="Детское" class="tag-filter"> Детское</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label><input type="checkbox" id="searchIngredients"> Искать по ингредиентам</label>
+                </div>
+            </div>
+            
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+            </div>
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userNameDisplay">User</span>
+                <button class="btn-icon" id="logoutBtn" title="Выйти"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Откройте для себя <br>мир вкусов</h1>
+                <p>Лучшие рецепты со всего мира, собранные специально для вас. Готовьте с удовольствием!</p>
+                <a href="#recipes" class="btn btn-primary">Смотреть рецепты</a>
+            </div>
+        </section>
+
+        <section id="categories" class="categories section reveal">
+            <div class="container">
+                <h2 class="section-title">Категории</h2>
+                <div class="categories-grid">
+                    <button class="category-card active reveal reveal-delay-1" data-category="all" style="background-image: url('https://avatars.mds.yandex.net/i?id=401a695f7c78137ca9d857507655e06d56bbc10e-5455692-images-thumbs&n=13');">
+                        <i class="fa-solid fa-border-all"></i>
+                        <span>Все</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-2" data-category="Супы" style="background-image: url('https://avatars.mds.yandex.net/i?id=5e6577f6c5869552b3f7ea1eaaab5bbc11d1cb64-5236410-images-thumbs&n=13');">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        <span>Супы</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-3" data-category="Салаты" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=400&auto=format&fit=crop');">
+                        <i class="fa-solid fa-carrot"></i>
+                        <span>Салаты</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-1" data-category="Горячее" style="background-image: url('https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=400&auto=format&fit=crop');">
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                        <span>Горячее</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-2" data-category="Завтраки" style="background-image: url('https://avatars.mds.yandex.net/i?id=d6b4be5d6d64aea41e737b31278e79b8d0e56adb-10245035-images-thumbs&n=13');">
+                        <i class="fa-solid fa-egg"></i>
+                        <span>Завтраки</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-3" data-category="Детское" style="background-image: url('https://avatars.mds.yandex.net/i?id=73d217d26055978e3289ce448a73a0be9fba91ec-9123151-images-thumbs&n=13');">
+                        <i class="fa-solid fa-baby"></i>
+                        <span>Детское</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-1" data-category="Диетическое" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=400&auto=format&fit=crop');">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>Диетическое</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-2" data-category="Напитки" style="background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=400&auto=format&fit=crop');">
+                        <i class="fa-solid fa-glass-water"></i>
+                        <span>Напитки</span>
+                    </button>
+                    <button class="category-card reveal reveal-delay-3" data-category="Десерты" style="background-image: url('https://avatars.mds.yandex.net/i?id=66627bdc2d175c9419adf5521eb75dada50438e5-4156995-images-thumbs&n=13');">
+                        <i class="fa-solid fa-ice-cream"></i>
+                        <span>Десерты</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipe of the Day Section -->
+        <section class="section recipe-of-day-section" style="background-color: #fff5f5; padding: 40px 0;">
+            <div class="container">
+                <h2 class="section-title">Рецепт дня</h2>
+                <div id="recipeOfDayContainer" class="recipe-of-day-card">
+                    <!-- Content injected via JS -->
+                    <div class="loading">Выбираем лучший рецепт...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recipes" class="recipes section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Каталог рецептов</h2>
+                    <div class="view-options">
+                        <div class="sort-tabs">
+                            <button class="sort-tab active" data-sort="new">Новые</button>
+                            <button class="sort-tab" data-sort="popular">Популярные</button>
+                        </div>
+                        <span id="recipesCount" style="margin-left: 15px;">0 рецептов</span>
+                    </div>
+                </div>
+                <div class="recipes-grid" id="recipesGrid">
+                    <!-- Recipes will be loaded here via JS -->
+                    <div class="loading">Загрузка рецептов...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contacts">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>ВкусноЕст</h3>
+                <p>Ваш проводник в мир кулинарии. Готовьте просто, быстро и вкусно.</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> г. Краснодар, ул. Красная, д. 25</p>
+                    <p style="margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> <a href="tel:+79010035388" style="color: inherit;">+7 (901) 003 53 88</a></p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> <a href="mailto:info@vkusnoest.ru" style="color: inherit;">info@vkusnoest.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="forum.html">Форум</a></li>
+                    <li><a href="shopping-list.html">Список покупок</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links" style="margin-bottom: 20px;">
+                    <a href="https://t.me/" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://vk.com/" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                    <a href="https://wa.me/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <h3>Подписка</h3>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Спасибо за подписку!'); this.reset();">
+                    <input type="email" placeholder="Ваш email" required style="width: 100%; padding: 10px; border-radius: 8px; border: none; margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary full-width">Подписаться</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ВкусноЕст. Все права защищены. | <a href="policy.html" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+        </div>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Recipe details will be injected here -->
+                <div class="recipe-details">
+                    <h3 class="modal-section-title">Ингредиенты</h3>
+                    <ul class="ingredients-list" id="ingredientsList">
+                        <!-- Ingredients will be injected here -->
+                    </ul>
+
+                    <h3 class="modal-section-title">Приготовление</h3>
+                    <ol class="steps-list">
+                        <!-- Steps will be injected here -->
+                    </ol>
+
+                    <div class="recipe-reviews-section">
+                        <h3 class="modal-section-title">Отзывы и оценки</h3>
+                        <div class="rating-summary" id="ratingSummary">
+                            <span class="average-rating">0.0</span>
+                            <div class="stars-display" id="averageStars"></div>
+                            <span class="reviews-count">(0 отзывов)</span>
+                        </div>
+                        
+                        <div id="reviewsList" class="reviews-list">
+                            <!-- Reviews loaded here -->
+                        </div>
+
+                        <div class="add-review-form" id="addReviewForm" style="display: none;">
+                            <h4>Оставить отзыв</h4>
+                            <div class="star-rating-input">
+                                <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+                                <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+                                <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+                                <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+                                <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
+                            </div>
+                            <textarea id="reviewText" placeholder="Ваш комментарий..." rows="3"></textarea>
+                            <button class="btn btn-primary mt-10" id="submitReviewBtn">Отправить</button>
+                        </div>
+                        <div class="login-to-comment" id="loginToReview" style="display: none;">
+                            <p>Войдите, чтобы оценить рецепт.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <div class="modal" id="authModal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            
+            <!-- Login Form -->
+            <div class="auth-form-container" id="loginForm">
+                <h2>Вход</h2>
+                <form id="loginFormEl">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Войти</button>
+                </form>
+                <p class="auth-switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form-container" id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormEl">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" required placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Создать аккаунт</button>
+                </form>
+                <p class="auth-switch">Есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
